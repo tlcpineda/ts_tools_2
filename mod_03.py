@@ -20,7 +20,7 @@ compile_dir_base = "COMPILED-JPG TO PDF"
 jpeg_res = 72  # dpi
 
 
-def compile_revision():
+def compile_revision() -> None:
     print(">>> Select source PSD folder ...")
 
     path = str(identify_path("folder"))
@@ -39,7 +39,7 @@ def compile_revision():
 
     if not psd_files:
         print("\n<=> No PSD file fit to be compiled.")
-        return False
+        return
 
     psd_files.sort()
     for_pdf_pages = []
@@ -71,12 +71,12 @@ def compile_revision():
         if for_pdf_pages:
             compile_pdf_file(for_pdf_pages, pdf_name)
 
-        return True
+        return
 
     except Exception as e:
         display_message("ERROR", "Failed to compile revision folder.", f"{e}")
 
-        return False
+        return
 
 
 def save_jpeg(rgb: Image.Image, dest_path: str, jpeg_name: str) -> None:
